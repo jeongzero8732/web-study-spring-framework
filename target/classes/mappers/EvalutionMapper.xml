@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.kpu.eclass.mapper.EvalutionMapper">
+
+ 	<insert id ="insert">
+ 		insert into aop_evalaution(userID,lectureName,professorName,lectureYear,semester,lecture_kinds,evalutionTitle,evalutionContent,totalScore,lecskill,leclevel) values 
+ 		(#{userID},#{lectureName},#{professorName},#{lectureYear},#{semester},#{lecture_kinds},#{evalutionTitle},#{evalutionContent},#{totalScore},#{lecskill},#{leclevel})
+ 	</insert>
+ 	
+ 	<select id ="selectByid" resultType="org.kpu.eclass.domain.EvalutionVO">
+ 	<![CDATA[
+ 		select * from aop_evalaution where evalutionID=#{evalutionID}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id ="selectAll" resultType="org.kpu.eclass.domain.EvalutionVO">
+ 	<![CDATA[
+ 		select * from aop_evalaution ORDER BY evalutionID desc
+ 	]]>
+ 	</select>
+ 	<select id ="searchAll" resultType="org.kpu.eclass.domain.EvalutionVO">
+ 	<![CDATA[
+ 		SELECT * FROM aop_evalaution WHERE CONCAT(lectureName,professorName,evalutionTitle,evalutionContent) LIKE CONCAT('%',#{content},'%') ORDER BY evalutionID DESC ;
+ 	]]>																												 
+ 	</select>
+ 	
+ 	<update id="update">
+ 		update aop_evalaution set lectureName=#{lectureName},professorName=#{professorName},lectureYear=#{lectureYear},semester=#{semester},lecture_kinds=#{lecture_kinds},evalutionTitle=#{evalutionTitle},evalutionContent=#{evalutionContent},totalScore=#{totalScore},lecskill=#{lecskill},leclevel=#{leclevel}
+ 		where evalutionID=#{evalutionID}
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		delete from aop_evalaution where evalutionID=#{evalutionID}
+ 	</delete>
+ 	
+ 	
+
+</mapper>

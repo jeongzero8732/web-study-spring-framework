@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.kpu.eclass.mapper.UserMapper">
+
+ 	<insert id ="insert">
+ 		insert into aop_user (userID,userPasswd,userName,userSex,userBirth,userEmail,userHome,scoreFF,scoreFS,scoreSF,scoreSS,scoreTF,scoreTS,scoreFFF,scoreFFS) values 
+ 		(#{userID},#{userPasswd},#{userName},#{userSex},#{userBirth},#{userEmail},#{userHome},#{scoreFF},#{scoreFS},#{scoreSF},#{scoreSS},#{scoreTF},#{scoreTS},#{scoreFFF},#{scoreFFS})
+ 	</insert>
+ 	
+ 	<select id="login" resultType="org.kpu.eclass.domain.UserVO">
+ 		select userID from aop_user where userID=#{userID} and userPasswd=#{userPasswd}
+ 	</select>
+ 	
+ 	<select id ="selectByid" resultType="org.kpu.eclass.domain.UserVO">
+ 	<![CDATA[
+ 		select * from aop_user where userID=#{id}
+ 	]]>
+ 	</select>
+ 	
+ 	<select id ="selectAll" resultType="org.kpu.eclass.domain.UserVO">
+ 	<![CDATA[
+ 		select * from aop_user 
+ 	]]>
+ 	</select>
+ 	
+ 	<update id="update">
+ 		update aop_user set userPasswd=#{userPasswd},userName=#{userName},userBirth=#{userBirth},userEmail=#{userEmail},userHome=#{userHome},scoreFF=#{scoreFF},scoreFS=#{scoreFS},scoreSF=#{scoreSS},scoreSS=#{scoreSS},scoreTF=#{scoreTS},scoreTS=#{scoreTS},scoreFFF=#{scoreFFF},scoreFFS=#{scoreFFS}
+ 		where userID=#{userID}
+ 	</update>
+ 	
+ 	
+ 	<update id="update2">
+ 	<![CDATA[
+ 		update aop_user set count=count-1 where userID=#{id}
+	]]>
+ 	</update>
+ 	
+ 	<update id="update3">
+ 	<![CDATA[
+ 		update aop_user set count=count+1 where userID=#{id}
+	]]>
+ 	</update>
+ 	
+ 	
+ 	<delete id="delete">
+ 		delete from aop_user where userID=#{userID}
+ 	</delete>
+
+</mapper>
